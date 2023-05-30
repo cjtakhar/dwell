@@ -10,11 +10,11 @@ const Dwell = () => {
             </div>
             <div className="dwell-body">
                 <div className="dwell-text">
-                    <p className="dwell-paragraph">We all deserve a sanctuary. A haven that nurtures your dreams and aligns you with with your authentic self. Where connections are formed and collective experiences create meaningful impact. Discover who you are and where you belong.</p>
+                    <p className="dwell-paragraph">We all deserve a sanctuary. A haven that nurtures your dreams and aligns you with with your authentic self. Where connections are formed and collective experiences enrich our existence. Discover who you are and where you belong.</p>
                     <p className="dwell-paragraph">Find your place in the world.</p>
                 </div>
                 <div className="dwell-image">
-                    <Link to="/listings">
+                    <Link to="/login">
                     <button className="dwell-button" >get started</button>
                     </Link>
                 </div>
