@@ -13,14 +13,17 @@
     }
 
     .dwell-button {
-        background-color: white;
+        background-color: gold;
         border: 1px solid gold;
         border-radius: 5px;
         margin: 1rem 0;
         padding: 1rem;
+        transition: all 0.3s ease-in-out;
+        color: white;
     }
 
     .dwell-button:hover {
-        background-color: gold;
-        color: white;
+        transition: all 0.3s ease-in-out;
+        background-color: white;
+        color: black;
     }
