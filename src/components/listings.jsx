@@ -38,20 +38,24 @@ const Listings = () => {
   };
 
   const renderLinks = () => {
-    return links.map((link, index) => (
-      <div
-        key={index}
-        className="link-item"
-        draggable="true"
-        onDragStart={(e) => handleDragStart(e, index)}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        data-index={index}
-      >
-        <a href={link} target="_blank" rel="noopener noreferrer">{link}</a>
-        <button className="remove-button" onClick={() => handleRemoveLink(index)}>x</button>
-      </div>
-    ));
+    return links.map((link, index) => {
+      const addressMatch = link.match(/homedetails\/([^/]+)\//);
+      const address = addressMatch ? addressMatch[1] : '';
+      return (
+        <div
+          key={index}
+          className="link-item"
+          draggable="true"
+          onDragStart={(e) => handleDragStart(e, index)}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          data-index={index}
+        >
+          <a href={link} target="_blank" rel="noopener noreferrer" className="address-link">{address}</a>
+          <button className="remove-button" onClick={() => handleRemoveLink(index)}>x</button>
+        </div>
+      );
+    });
   };
 
   const handleAddLink = () => {
@@ -76,4 +80,3 @@ const Listings = () => {
 };
 
 export default Listings;
-
