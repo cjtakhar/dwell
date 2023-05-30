@@ -34,7 +34,7 @@ const Login = () => {
                         <label className="login-label"></label>
                         <input className="login-field" type="password" placeholder="password" value={password} onChange={handlePasswordChange} />
 
-                        <input className="login-button" type="submit" value="login" />
+                        <input className="login-button" type="submit" value="enter" />
                     </div>
                 </form>
             </div>

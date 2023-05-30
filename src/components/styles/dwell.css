@@ -14,8 +14,13 @@
 
     .dwell-button {
         background-color: white;
-        border: 1px solid #333;
+        border: 1px solid gold;
         border-radius: 5px;
         margin: 1rem 0;
         padding: 1rem;
+    }
+
+    .dwell-button:hover {
+        background-color: gold;
+        color: white;
     }
