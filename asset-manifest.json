@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dwell/static/css/main.d93291c1.css",
+    "main.js": "/dwell/static/js/main.b8c3339e.js",
+    "static/js/787.f13b6a4d.chunk.js": "/dwell/static/js/787.f13b6a4d.chunk.js",
+    "index.html": "/dwell/index.html",
+    "main.d93291c1.css.map": "/dwell/static/css/main.d93291c1.css.map",
+    "main.b8c3339e.js.map": "/dwell/static/js/main.b8c3339e.js.map",
+    "787.f13b6a4d.chunk.js.map": "/dwell/static/js/787.f13b6a4d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d93291c1.css",
+    "static/js/main.b8c3339e.js"
+  ]
+}
