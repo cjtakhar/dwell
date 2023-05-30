@@ -3,11 +3,23 @@ import './styles/listings.css';
 
 const Listings = () => {
   const [links, setLinks] = useState([]);
+  const [buyLinks, setBuyLinks] = useState([]);
+  const [rentLinks, setRentLinks] = useState([]);
 
   useEffect(() => {
     const savedLinks = localStorage.getItem('links');
     if (savedLinks) {
       setLinks(JSON.parse(savedLinks));
+    }
+
+    const savedBuyLinks = localStorage.getItem('buyLinks');
+    if (savedBuyLinks) {
+      setBuyLinks(JSON.parse(savedBuyLinks));
+    }
+
+    const savedRentLinks = localStorage.getItem('rentLinks');
+    if (savedRentLinks) {
+      setRentLinks(JSON.parse(savedRentLinks));
     }
   }, []);
 
@@ -30,15 +42,46 @@ const Listings = () => {
     e.preventDefault();
   };
 
-  const handleRemoveLink = (index) => {
+  const handleRemoveLink = (index, type) => {
     const updatedLinks = [...links];
     updatedLinks.splice(index, 1);
     setLinks(updatedLinks);
     localStorage.setItem('links', JSON.stringify(updatedLinks));
+
+    if (type === 'buy') {
+      const updatedBuyLinks = [...buyLinks];
+      updatedBuyLinks.splice(index, 1);
+      setBuyLinks(updatedBuyLinks);
+      localStorage.setItem('buyLinks', JSON.stringify(updatedBuyLinks));
+    } else if (type === 'rent') {
+      const updatedRentLinks = [...rentLinks];
+      updatedRentLinks.splice(index, 1);
+      setRentLinks(updatedRentLinks);
+      localStorage.setItem('rentLinks', JSON.stringify(updatedRentLinks));
+    }
   };
 
-  const renderLinks = () => {
-    return links.map((link, index) => {
+  const handleAddLink = (type) => {
+    const newLink = prompt('Enter a link:');
+    if (newLink) {
+      const updatedLinks = [...links, newLink];
+      setLinks(updatedLinks);
+      localStorage.setItem('links', JSON.stringify(updatedLinks));
+
+      if (type === 'buy') {
+        const updatedBuyLinks = [...buyLinks, newLink];
+        setBuyLinks(updatedBuyLinks);
+        localStorage.setItem('buyLinks', JSON.stringify(updatedBuyLinks));
+      } else if (type === 'rent') {
+        const updatedRentLinks = [...rentLinks, newLink];
+        setRentLinks(updatedRentLinks);
+        localStorage.setItem('rentLinks', JSON.stringify(updatedRentLinks));
+      }
+    }
+  };
+
+  const renderLinks = (linkArray, type) => {
+    return linkArray.map((link, index) => {
       const addressMatch = link.match(/homedetails\/([^/]+)\//);
       const address = addressMatch ? addressMatch[1] : '';
       return (
@@ -52,28 +95,30 @@ const Listings = () => {
           data-index={index}
         >
           <a href={link} target="_blank" rel="noopener noreferrer" className="address-link">{address}</a>
-          <button className="remove-button" onClick={() => handleRemoveLink(index)}>x</button>
+          <button className="remove-button" onClick={() => handleRemoveLink(index, type)}>x</button>
         </div>
       );
     });
   };
 
-  const handleAddLink = () => {
-    const newLink = prompt('Enter a link:');
-    if (newLink) {
-      const updatedLinks = [...links, newLink];
-      setLinks(updatedLinks);
-      localStorage.setItem('links', JSON.stringify(updatedLinks));
-    }
-  };
-
   return (
     <div className="listings-container">
-      <h2 className="listings-title">Listings</h2>
-      <button className="listings-button" onClick={handleAddLink}>Add Link</button>
-
-      <div className="link-list" onDrop={handleDrop} onDragOver={handleDragOver}>
-        {renderLinks()}
+      <div>
+        <h2 className="listings-title">Listings</h2>
+      </div>
+      <div className="buy-rent-container">
+        <div className="buy-container">
+          <h2>Buy <span onClick={() => handleAddLink('buy')}>+</span></h2>
+          <div className="link-list" onDrop={handleDrop} onDragOver={handleDragOver}>
+            {renderLinks(buyLinks, 'buy')}
+          </div>
+        </div>
+        <div className="rent-container">
+          <h2>Rent <span onClick={() => handleAddLink('rent')}>+</span></h2>
+          <div className="link-list" onDrop={handleDrop} onDragOver={handleDragOver}>
+            {renderLinks(rentLinks, 'rent')}
+          </div>
+        </div>
       </div>
     </div>
   );
